@@ -1,0 +1,64 @@
+server:
+  port: 10001
+spring:
+  application:
+    name: rocket-pay-order
+  profiles:
+    active: dev
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://47.243.136.187:3306/rocket-dev?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: "ullay5-s.gDF5Q"
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      config:
+        server-addr: 47.243.136.187:8848
+        file-extension: yml
+        namespace: a120528a-c07f-4ada-9297-0119417fc105
+      discovery:
+        server-addr: 47.243.136.187:8848
+        namespace: a120528a-c07f-4ada-9297-0119417fc105
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://47.243.136.187:3306/rocket-dev?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: "ullay5-s.gDF5Q"
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      config:
+        server-addr: 47.243.136.187:8848
+        file-extension: yml
+        namespace: 53b1020f-7fca-484c-bdc3-8c5d2026203b
+      discovery:
+        server-addr: 47.243.136.187:8848
+        namespace: 53b1020f-7fca-484c-bdc3-8c5d2026203b
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://172.26.16.151:3306/rocket?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: "Mysql12315"
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.26.16.148:8848
+        file-extension: yml
+        namespace: 93c08080-9b12-44bc-a81c-821160cb5c0b
+      discovery:
+        server-addr: 172.26.16.148:8848
+        namespace: 93c08080-9b12-44bc-a81c-821160cb5c0b
+

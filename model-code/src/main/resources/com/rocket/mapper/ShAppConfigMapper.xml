@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rocket.mapper.SysPayChannelOrderMapper">
+
+    <update id="updateStatus">
+        update sys_pay_channel_order set status = #{query.status} where id = #{query.id}
+    </update>
+
+    <update id="updateStatusByOrderId">
+        update sys_pay_channel_order set status = #{query.status} where order_id = #{query.orderId}
+    </update>
+
+    <select id="getAllByMerchantId" resultType="com.rocket.vo.SysPayChannelOrderVO">
+        select order_id , status
+        from sys_pay_channel_order where merchant_id = #{query.merchantId}
+        <if test="query.status!=null and query.status != '' ">
+            and  status = #{query.status}
+        </if>
+    </select>
+</mapper>
